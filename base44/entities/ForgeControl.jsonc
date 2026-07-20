@@ -1,0 +1,56 @@
+{
+  "name": "ForgeControl",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "slider",
+        "toggle",
+        "button"
+      ],
+      "default": "toggle"
+    },
+    "section": {
+      "type": "string",
+      "default": "Fabric"
+    },
+    "color": {
+      "type": "string",
+      "enum": [
+        "cyan",
+        "magenta",
+        "amber",
+        "green",
+        "violet"
+      ],
+      "default": "cyan"
+    },
+    "value": {
+      "type": "number",
+      "default": 0
+    },
+    "min": {
+      "type": "number",
+      "default": 0
+    },
+    "max": {
+      "type": "number",
+      "default": 100
+    },
+    "step": {
+      "type": "number",
+      "default": 1
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "kind"
+  ]
+}

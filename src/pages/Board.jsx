@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
-import { Flame, Terminal } from "lucide-react";
+import { Flame, Terminal, Radio, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import PieceCard from "@/components/forge/PieceCard";
 import { GRADES, GRADE_ORDER } from "@/components/forge/gradeConfig";
@@ -28,12 +28,26 @@ export default function Board() {
                 <span className="text-zinc-400 font-light">Command Board</span>
               </h1>
             </div>
-            <Link
-              to="/install"
-              className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-amber-400 hover:bg-amber-500/20 transition-colors shrink-0"
-            >
-              <Terminal className="h-3.5 w-3.5" /> Install Guide
-            </Link>
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <Link
+                to="/deck"
+                className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:bg-cyan-500/20 transition-colors"
+              >
+                <Radio className="h-3.5 w-3.5" /> Control Deck
+              </Link>
+              <Link
+                to="/cheatsheet"
+                className="inline-flex items-center gap-2 rounded-full border border-fuchsia-500/40 bg-fuchsia-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-fuchsia-400 hover:bg-fuchsia-500/20 transition-colors"
+              >
+                <BookOpen className="h-3.5 w-3.5" /> Cheat Sheet
+              </Link>
+              <Link
+                to="/install"
+                className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-amber-400 hover:bg-amber-500/20 transition-colors"
+              >
+                <Terminal className="h-3.5 w-3.5" /> Install Guide
+              </Link>
+            </div>
           </div>
           <p className="text-zinc-500 text-sm font-mono">
             {pieces?.length || 0} pieces on the board · every organ graded, nothing thrown away

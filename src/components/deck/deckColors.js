@@ -1,0 +1,42 @@
+export const NEON = {
+  cyan: {
+    text: "text-cyan-400",
+    border: "border-cyan-500/40",
+    bg: "bg-cyan-500/10",
+    fill: "bg-cyan-400",
+    glow: "shadow-[0_0_20px_-4px_rgba(34,211,238,0.6)]",
+    ring: "ring-cyan-400/50",
+  },
+  magenta: {
+    text: "text-fuchsia-400",
+    border: "border-fuchsia-500/40",
+    bg: "bg-fuchsia-500/10",
+    fill: "bg-fuchsia-400",
+    glow: "shadow-[0_0_20px_-4px_rgba(232,121,249,0.6)]",
+    ring: "ring-fuchsia-400/50",
+  },
+  amber: {
+    text: "text-amber-400",
+    border: "border-amber-500/40",
+    bg: "bg-amber-500/10",
+    fill: "bg-amber-400",
+    glow: "shadow-[0_0_20px_-4px_rgba(251,191,36,0.6)]",
+    ring: "ring-amber-400/50",
+  },
+  green: {
+    text: "text-emerald-400",
+    border: "border-emerald-500/40",
+    bg: "bg-emerald-500/10",
+    fill: "bg-emerald-400",
+    glow: "shadow-[0_0_20px_-4px_rgba(52,211,153,0.6)]",
+    ring: "ring-emerald-400/50",
+  },
+  violet: {
+    text: "text-violet-400",
+    border: "border-violet-500/40",
+    bg: "bg-violet-500/10",
+    fill: "bg-violet-400",
+    glow: "shadow-[0_0_20px_-4px_rgba(167,139,250,0.6)]",
+    ring: "ring-violet-400/50",
+  },
+};

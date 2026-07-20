@@ -192,4 +192,46 @@ journalctl --user -u forge -f        # live logs`,
       },
     ],
   },
+  {
+    title: "The bridge — drive the Forge from the Control Deck",
+    note: "This app's Control Deck is your codeless operator console. Your Forge polls the deck's controls over the app's data API and reacts to changes — sliders become live dials, toggles flip modes, button press-counts fire tasks. Get your App ID and an API key from this app's dashboard (Settings → API), then drop this in as forge_ng/bridge.py and call bridge.poll() inside the tick loop.",
+    blocks: [
+      {
+        lang: "python",
+        code: `# forge_ng/bridge.py — deaf-section coupler to the Control Deck (read-only pull)
+import json, urllib.request
+
+APP_ID = "YOUR_APP_ID"        # from this app's dashboard
+API_KEY = "YOUR_API_KEY"      # Settings -> API (keep it secret, keep it local)
+URL = f"https://app.base44.com/api/apps/{APP_ID}/entities/ForgeControl"
+
+
+class DeckBridge:
+    """Polls the deck; reports only what CHANGED since last poll.
+    The bridge never pushes — one-way pull keeps the attack surface at zero verbs.
+    """
+
+    def __init__(self):
+        self._last = {}
+
+    def poll(self):
+        req = urllib.request.Request(URL, headers={"api_key": API_KEY})
+        controls = json.loads(urllib.request.urlopen(req, timeout=5).read())
+        changed = []
+        for c in controls:
+            key = c["id"]
+            if self._last.get(key) != c.get("value"):
+                self._last[key] = c.get("value")
+                changed.append(c)   # {name, kind, section, value, ...}
+        return changed
+
+
+# in main.py's tick loop (poll every ~2s, not every tick):
+#   for c in bridge.poll():
+#       if c["kind"] == "toggle": overseer.set_mode(c["name"], bool(c["value"]))
+#       if c["kind"] == "slider": overseer.set_dial(c["name"], c["value"])
+#       if c["kind"] == "button": overseer.fire_task(c["name"])   # count changed = fire once`,
+      },
+    ],
+  },
 ];

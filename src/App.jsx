@@ -16,6 +16,8 @@ import ResetPassword from './pages/ResetPassword';
 import Board from './pages/Board';
 import PieceDetail from './pages/PieceDetail';
 import InstallGuide from './pages/InstallGuide';
+import ControlDeck from './pages/ControlDeck';
+import CheatSheet from './pages/CheatSheet';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -52,6 +54,8 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<Board />} />
         <Route path="/piece/:id" element={<PieceDetail />} />
         <Route path="/install" element={<InstallGuide />} />
+        <Route path="/deck" element={<ControlDeck />} />
+        <Route path="/cheatsheet" element={<CheatSheet />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
