@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
-import { Flame } from "lucide-react";
+import { Flame, Terminal } from "lucide-react";
+import { Link } from "react-router-dom";
 import PieceCard from "@/components/forge/PieceCard";
 import { GRADES, GRADE_ORDER } from "@/components/forge/gradeConfig";
 
@@ -19,12 +20,20 @@ export default function Board() {
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <header className="mb-10">
-          <div className="flex items-center gap-3 mb-2">
-            <Flame className="h-7 w-7 text-amber-500" />
-            <h1 className="font-heading text-3xl md:text-4xl tracking-tight">
-              THE FORGE <span className="text-amber-500">·</span>{" "}
-              <span className="text-zinc-400 font-light">Command Board</span>
-            </h1>
+          <div className="flex items-center justify-between gap-4 mb-2">
+            <div className="flex items-center gap-3">
+              <Flame className="h-7 w-7 text-amber-500" />
+              <h1 className="font-heading text-3xl md:text-4xl tracking-tight">
+                THE FORGE <span className="text-amber-500">·</span>{" "}
+                <span className="text-zinc-400 font-light">Command Board</span>
+              </h1>
+            </div>
+            <Link
+              to="/install"
+              className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-amber-400 hover:bg-amber-500/20 transition-colors shrink-0"
+            >
+              <Terminal className="h-3.5 w-3.5" /> Install Guide
+            </Link>
           </div>
           <p className="text-zinc-500 text-sm font-mono">
             {pieces?.length || 0} pieces on the board · every organ graded, nothing thrown away

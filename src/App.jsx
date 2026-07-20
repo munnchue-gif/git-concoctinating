@@ -15,6 +15,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Board from './pages/Board';
 import PieceDetail from './pages/PieceDetail';
+import InstallGuide from './pages/InstallGuide';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -50,6 +51,7 @@ const AuthenticatedApp = () => {
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
         <Route path="/" element={<Board />} />
         <Route path="/piece/:id" element={<PieceDetail />} />
+        <Route path="/install" element={<InstallGuide />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
