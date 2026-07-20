@@ -1,0 +1,46 @@
+{
+  "name": "ForgePiece",
+  "type": "object",
+  "properties": {
+    "order": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    },
+    "piece_type": {
+      "type": "string",
+      "enum": [
+        "Code",
+        "Concept"
+      ],
+      "default": "Concept"
+    },
+    "grade": {
+      "type": "string",
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "RED",
+        "PURPLE",
+        "ORANGE"
+      ],
+      "default": "YELLOW"
+    },
+    "what_it_is": {
+      "type": "string"
+    },
+    "serves": {
+      "type": "string"
+    },
+    "gaps": {
+      "type": "string"
+    },
+    "next_brick": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
