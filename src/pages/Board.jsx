@@ -5,6 +5,7 @@ import { Flame, Terminal, Radio, BookOpen, ScanSearch, Cable } from "lucide-reac
 import { Link } from "react-router-dom";
 import PieceCard from "@/components/forge/PieceCard";
 import { GRADES, GRADE_ORDER } from "@/components/forge/gradeConfig";
+import BoardControlStrip from "@/components/deck/BoardControlStrip";
 
 export default function Board() {
   const [filter, setFilter] = useState("ALL");
@@ -17,8 +18,14 @@ export default function Board() {
   const counts = (pieces || []).reduce((acc, p) => ({ ...acc, [p.grade]: (acc[p.grade] || 0) + 1 }), {});
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="flex items-center gap-2 mb-6" aria-hidden="true">
+          <div className="h-2 flex-1 rounded-full bg-primary/70" />
+          <div className="h-2 w-16 rounded-full bg-accent/70" />
+          <div className="h-2 w-8 rounded-full bg-primary/40" />
+          <div className="h-2 w-4 rounded-full bg-accent/40" />
+        </div>
         <header className="mb-10">
           <div className="flex items-center justify-between gap-4 mb-2">
             <div className="flex items-center gap-3">
@@ -92,6 +99,8 @@ export default function Board() {
             );
           })}
         </div>
+
+        <BoardControlStrip />
 
         {isLoading ? (
           <div className="flex justify-center py-24">
