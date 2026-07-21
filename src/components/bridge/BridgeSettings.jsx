@@ -29,6 +29,19 @@ export default function BridgeSettings({ onSaved }) {
           placeholder="Access token (optional)"
           className="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2 text-sm font-mono text-zinc-200 placeholder:text-zinc-600 focus:border-cyan-500/60 outline-none"
         />
+        <input
+          value={cfg.cfId || ""}
+          onChange={(e) => setCfg({ ...cfg, cfId: e.target.value })}
+          placeholder="CF Access Client ID (service token)"
+          className="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2 text-sm font-mono text-zinc-200 placeholder:text-zinc-600 focus:border-cyan-500/60 outline-none"
+        />
+        <input
+          value={cfg.cfSecret || ""}
+          onChange={(e) => setCfg({ ...cfg, cfSecret: e.target.value })}
+          type="password"
+          placeholder="CF Access Client Secret"
+          className="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2 text-sm font-mono text-zinc-200 placeholder:text-zinc-600 focus:border-cyan-500/60 outline-none"
+        />
       </div>
       <button
         onClick={save}

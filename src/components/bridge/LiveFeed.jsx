@@ -1,33 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import { feedUrl } from "@/lib/forgeBridge";
+import React, { useEffect, useState } from "react";
+import { openFeed } from "@/lib/forgeBridge";
 import { Radio } from "lucide-react";
 
 export default function LiveFeed() {
   const [events, setEvents] = useState([]);
   const [status, setStatus] = useState("connecting");
   const [lastBeat, setLastBeat] = useState(null);
-  const esRef = useRef(null);
 
   useEffect(() => {
-    const url = feedUrl();
-    if (!url) {
-      setStatus("unconfigured");
-      return;
-    }
-    const es = new EventSource(url);
-    esRef.current = es;
-    es.onopen = () => setStatus("live");
-    es.onerror = () => setStatus("disconnected");
-    es.onmessage = (e) => {
+    const abort = openFeed((raw) => {
       let data;
-      try { data = JSON.parse(e.data); } catch { data = { raw: e.data }; }
+      try { data = JSON.parse(raw); } catch { data = { raw }; }
       if (data.kind === "heartbeat") {
         setLastBeat(Date.now());
         return;
       }
       setEvents((prev) => [{ ts: Date.now(), data }, ...prev].slice(0, 200));
-    };
-    return () => es.close();
+    }, setStatus);
+    return abort;
   }, []);
 
   const dot = { live: "bg-emerald-400", connecting: "bg-yellow-400", disconnected: "bg-red-500", unconfigured: "bg-zinc-600" }[status];
