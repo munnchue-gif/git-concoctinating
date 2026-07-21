@@ -1,0 +1,87 @@
+{
+  "name": "FileReview",
+  "type": "object",
+  "properties": {
+    "file_name": {
+      "type": "string"
+    },
+    "overall_grade": {
+      "type": "string",
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "RED",
+        "PURPLE",
+        "ORANGE"
+      ],
+      "default": "YELLOW"
+    },
+    "code_grade": {
+      "type": "string",
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "RED",
+        "PURPLE",
+        "ORANGE"
+      ]
+    },
+    "structure_grade": {
+      "type": "string",
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "RED",
+        "PURPLE",
+        "ORANGE"
+      ]
+    },
+    "security_grade": {
+      "type": "string",
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "RED",
+        "PURPLE",
+        "ORANGE"
+      ]
+    },
+    "install_grade": {
+      "type": "string",
+      "enum": [
+        "GREEN",
+        "YELLOW",
+        "RED",
+        "PURPLE",
+        "ORANGE"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "review": {
+      "type": "string"
+    },
+    "how_tos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preinstall_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_bricks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "file_name"
+  ]
+}

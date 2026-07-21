@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
-import { Flame, Terminal, Radio, BookOpen } from "lucide-react";
+import { Flame, Terminal, Radio, BookOpen, ScanSearch } from "lucide-react";
 import { Link } from "react-router-dom";
 import PieceCard from "@/components/forge/PieceCard";
 import { GRADES, GRADE_ORDER } from "@/components/forge/gradeConfig";
@@ -34,6 +34,12 @@ export default function Board() {
                 className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:bg-cyan-500/20 transition-colors"
               >
                 <Radio className="h-3.5 w-3.5" /> Control Deck
+              </Link>
+              <Link
+                to="/review"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+              >
+                <ScanSearch className="h-3.5 w-3.5" /> Review Bay
               </Link>
               <Link
                 to="/cheatsheet"

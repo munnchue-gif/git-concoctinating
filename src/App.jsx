@@ -18,6 +18,7 @@ import PieceDetail from './pages/PieceDetail';
 import InstallGuide from './pages/InstallGuide';
 import ControlDeck from './pages/ControlDeck';
 import CheatSheet from './pages/CheatSheet';
+import ReviewBay from './pages/ReviewBay';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -56,6 +57,7 @@ const AuthenticatedApp = () => {
         <Route path="/install" element={<InstallGuide />} />
         <Route path="/deck" element={<ControlDeck />} />
         <Route path="/cheatsheet" element={<CheatSheet />} />
+        <Route path="/review" element={<ReviewBay />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
