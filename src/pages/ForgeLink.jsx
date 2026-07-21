@@ -9,6 +9,7 @@ import HealthPanel from "@/components/bridge/HealthPanel";
 import WrapsPanel from "@/components/bridge/WrapsPanel";
 import LedgerPanel from "@/components/bridge/LedgerPanel";
 import MintPanel from "@/components/bridge/MintPanel";
+import ConcoctPanel from "@/components/bridge/ConcoctPanel";
 
 export default function ForgeLink() {
   const [showSettings, setShowSettings] = useState(!isBridgeConfigured());
@@ -54,12 +55,14 @@ export default function ForgeLink() {
             <TabsTrigger value="wraps">Wraps</TabsTrigger>
             <TabsTrigger value="ledger">Ledger</TabsTrigger>
             <TabsTrigger value="mint">Mint</TabsTrigger>
+            <TabsTrigger value="concoct">Concoct</TabsTrigger>
           </TabsList>
           <TabsContent value="feed"><LiveFeed /></TabsContent>
           <TabsContent value="health"><HealthPanel /></TabsContent>
           <TabsContent value="wraps"><WrapsPanel /></TabsContent>
           <TabsContent value="ledger"><LedgerPanel /></TabsContent>
           <TabsContent value="mint"><MintPanel /></TabsContent>
+          <TabsContent value="concoct"><ConcoctPanel /></TabsContent>
         </Tabs>
       </div>
     </div>
