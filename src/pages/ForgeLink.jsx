@@ -11,6 +11,7 @@ import LedgerPanel from "@/components/bridge/LedgerPanel";
 import MintPanel from "@/components/bridge/MintPanel";
 import ConcoctPanel from "@/components/bridge/ConcoctPanel";
 import TroubleshootPanel from "@/components/bridge/TroubleshootPanel";
+import ConnectionGuide from "@/components/bridge/ConnectionGuide";
 
 export default function ForgeLink() {
   const [showSettings, setShowSettings] = useState(!isBridgeConfigured());
@@ -44,8 +45,9 @@ export default function ForgeLink() {
         </header>
 
         {showSettings && (
-          <div className="mb-8">
+          <div className="mb-8 space-y-4">
             <BridgeSettings onSaved={() => { setShowSettings(false); setConnKey((k) => k + 1); }} />
+            <ConnectionGuide />
           </div>
         )}
 
