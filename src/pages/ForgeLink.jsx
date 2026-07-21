@@ -10,6 +10,7 @@ import WrapsPanel from "@/components/bridge/WrapsPanel";
 import LedgerPanel from "@/components/bridge/LedgerPanel";
 import MintPanel from "@/components/bridge/MintPanel";
 import ConcoctPanel from "@/components/bridge/ConcoctPanel";
+import TroubleshootPanel from "@/components/bridge/TroubleshootPanel";
 
 export default function ForgeLink() {
   const [showSettings, setShowSettings] = useState(!isBridgeConfigured());
@@ -56,6 +57,7 @@ export default function ForgeLink() {
             <TabsTrigger value="ledger">Ledger</TabsTrigger>
             <TabsTrigger value="mint">Mint</TabsTrigger>
             <TabsTrigger value="concoct">Concoct</TabsTrigger>
+            <TabsTrigger value="tasks">Tasks</TabsTrigger>
           </TabsList>
           <TabsContent value="feed"><LiveFeed /></TabsContent>
           <TabsContent value="health"><HealthPanel /></TabsContent>
@@ -63,6 +65,7 @@ export default function ForgeLink() {
           <TabsContent value="ledger"><LedgerPanel /></TabsContent>
           <TabsContent value="mint"><MintPanel /></TabsContent>
           <TabsContent value="concoct"><ConcoctPanel /></TabsContent>
+          <TabsContent value="tasks"><TroubleshootPanel /></TabsContent>
         </Tabs>
       </div>
     </div>
