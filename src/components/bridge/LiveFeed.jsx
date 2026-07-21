@@ -5,6 +5,7 @@ import { Radio } from "lucide-react";
 export default function LiveFeed() {
   const [events, setEvents] = useState([]);
   const [status, setStatus] = useState("connecting");
+  const [lastBeat, setLastBeat] = useState(null);
   const esRef = useRef(null);
 
   useEffect(() => {
@@ -20,6 +21,10 @@ export default function LiveFeed() {
     es.onmessage = (e) => {
       let data;
       try { data = JSON.parse(e.data); } catch { data = { raw: e.data }; }
+      if (data.kind === "heartbeat") {
+        setLastBeat(Date.now());
+        return;
+      }
       setEvents((prev) => [{ ts: Date.now(), data }, ...prev].slice(0, 200));
     };
     return () => es.close();
@@ -32,6 +37,7 @@ export default function LiveFeed() {
       <div className="flex items-center gap-2 mb-4 text-xs font-mono uppercase tracking-widest text-zinc-400">
         <span className={`h-2 w-2 rounded-full ${dot} ${status === "live" ? "animate-pulse" : ""}`} />
         <Radio className="h-3.5 w-3.5" /> Overseer tap · {status}
+        {lastBeat && <span className="text-zinc-600 normal-case">· heartbeat {new Date(lastBeat).toLocaleTimeString()}</span>}
       </div>
       {events.length === 0 ? (
         <p className="text-zinc-600 text-center py-16 font-mono text-sm">

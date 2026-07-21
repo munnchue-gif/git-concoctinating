@@ -30,7 +30,7 @@ export default function HealthPanel() {
         <div className="space-y-4">
           <div className="flex flex-wrap gap-3">
             <Stat label="Booted" value={health.booted ? "YES" : "NO"} good={health.booted} />
-            <Stat label="Tests" value={health.tests_ok ? "GREEN" : "FAILING"} good={health.tests_ok} />
+            <Stat label="Contract" value={health.contract_version || "?"} good={Boolean(health.contract_version)} />
             <Stat label="Uptime" value={`${Math.floor((health.uptime_s || 0) / 60)}m`} good />
             <Stat label="Organs" value={(health.organs || []).length} good />
           </div>

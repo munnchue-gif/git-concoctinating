@@ -8,14 +8,20 @@ export default function LedgerPanel() {
 
   useEffect(() => {
     bridgeFetch("/ledger?since=0")
-      .then((data) => setState({ entries: Array.isArray(data) ? data : data.entries || [] }))
+      .then((data) => setState({ entries: Array.isArray(data) ? data : data.entries || [], verified: data.verified }))
       .catch((error) => setState({ error }));
   }, []);
 
-  const { entries, loading, error } = state;
+  const { entries, verified, loading, error } = state;
 
   return (
     <PanelShell loading={loading} error={error} empty={entries && entries.length === 0} emptyText="Ledger is empty.">
+      <div>
+      {verified !== undefined && verified !== null && (
+        <div className={`inline-flex items-center gap-2 mb-4 rounded-full border px-3 py-1 text-xs font-mono uppercase tracking-wider ${verified ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400" : "border-red-500/40 bg-red-500/10 text-red-400"}`}>
+          Hash chain: {verified ? "VERIFIED · tamper-free" : "BROKEN · tamper detected"}
+        </div>
+      )}
       <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-1">
         {(entries || []).map((e, i) => (
           <div key={i} className="rounded-lg border border-zinc-800 bg-zinc-900/60 p-3 flex items-start gap-3">
@@ -25,6 +31,7 @@ export default function LedgerPanel() {
             </pre>
           </div>
         ))}
+      </div>
       </div>
     </PanelShell>
   );
