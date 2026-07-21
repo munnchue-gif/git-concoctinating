@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
-import { Flame, Terminal, Radio, BookOpen, ScanSearch } from "lucide-react";
+import { Flame, Terminal, Radio, BookOpen, ScanSearch, Cable } from "lucide-react";
 import { Link } from "react-router-dom";
 import PieceCard from "@/components/forge/PieceCard";
 import { GRADES, GRADE_ORDER } from "@/components/forge/gradeConfig";
@@ -29,6 +29,12 @@ export default function Board() {
               </h1>
             </div>
             <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <Link
+                to="/forge"
+                className="inline-flex items-center gap-2 rounded-full border border-sky-500/40 bg-sky-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-sky-400 hover:bg-sky-500/20 transition-colors"
+              >
+                <Cable className="h-3.5 w-3.5" /> Forge Link
+              </Link>
               <Link
                 to="/deck"
                 className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:bg-cyan-500/20 transition-colors"

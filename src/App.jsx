@@ -19,6 +19,7 @@ import InstallGuide from './pages/InstallGuide';
 import ControlDeck from './pages/ControlDeck';
 import CheatSheet from './pages/CheatSheet';
 import ReviewBay from './pages/ReviewBay';
+import ForgeLink from './pages/ForgeLink';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -58,6 +59,7 @@ const AuthenticatedApp = () => {
         <Route path="/deck" element={<ControlDeck />} />
         <Route path="/cheatsheet" element={<CheatSheet />} />
         <Route path="/review" element={<ReviewBay />} />
+        <Route path="/forge" element={<ForgeLink />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
