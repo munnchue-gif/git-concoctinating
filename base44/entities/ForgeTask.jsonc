@@ -1,0 +1,27 @@
+{
+  "name": "ForgeTask",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "detail": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "description": "What triggered this task (e.g. bridge offline, section fault)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "done"
+      ],
+      "default": "open"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}
