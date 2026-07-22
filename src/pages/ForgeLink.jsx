@@ -12,6 +12,7 @@ import MintPanel from "@/components/bridge/MintPanel";
 import ConcoctPanel from "@/components/bridge/ConcoctPanel";
 import TroubleshootPanel from "@/components/bridge/TroubleshootPanel";
 import ConnectionGuide from "@/components/bridge/ConnectionGuide";
+import SocketDock from "@/components/sockets/SocketDock";
 
 export default function ForgeLink() {
   const [showSettings, setShowSettings] = useState(!isBridgeConfigured());
@@ -53,6 +54,7 @@ export default function ForgeLink() {
 
         <Tabs defaultValue="feed" key={connKey}>
           <TabsList className="bg-zinc-900 border border-zinc-800 mb-6">
+            <TabsTrigger value="sockets">Sockets</TabsTrigger>
             <TabsTrigger value="feed">Live Feed</TabsTrigger>
             <TabsTrigger value="health">Health</TabsTrigger>
             <TabsTrigger value="wraps">Wraps</TabsTrigger>
@@ -61,6 +63,7 @@ export default function ForgeLink() {
             <TabsTrigger value="concoct">Concoct</TabsTrigger>
             <TabsTrigger value="tasks">Tasks</TabsTrigger>
           </TabsList>
+          <TabsContent value="sockets"><SocketDock /></TabsContent>
           <TabsContent value="feed"><LiveFeed /></TabsContent>
           <TabsContent value="health"><HealthPanel /></TabsContent>
           <TabsContent value="wraps"><WrapsPanel /></TabsContent>

@@ -1,0 +1,30 @@
+{
+  "name": "ConnectionEvent",
+  "type": "object",
+  "properties": {
+    "connection_id": {
+      "type": "string"
+    },
+    "connection_name": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "fail"
+      ],
+      "default": "ok"
+    },
+    "detail": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "connection_name",
+    "status"
+  ]
+}

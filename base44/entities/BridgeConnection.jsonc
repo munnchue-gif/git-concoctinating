@@ -1,0 +1,55 @@
+{
+  "name": "BridgeConnection",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "wsl",
+        "forge",
+        "github",
+        "cloudflare",
+        "gpu",
+        "database",
+        "custom"
+      ],
+      "default": "custom"
+    },
+    "url": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "pinned": {
+      "type": "boolean",
+      "default": false
+    },
+    "approved": {
+      "type": "boolean",
+      "default": true
+    },
+    "last_status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "fail",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "last_connected": {
+      "type": "string"
+    },
+    "times_connected": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
