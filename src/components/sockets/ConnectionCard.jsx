@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { saveBridgeConfig, bridgeFetch } from "@/lib/forgeBridge";
+import { getBridgeConfig, saveBridgeConfig, bridgeFetch } from "@/lib/forgeBridge";
 import { getConnSecrets, hasConnSecrets, deleteConnSecrets } from "@/lib/connectionVault";
 import { kindOf } from "@/components/sockets/socketKinds";
 import { Plug, Pin, Trash2, Loader2, KeyRound } from "lucide-react";
 
 const DOT = { ok: "bg-emerald-400", fail: "bg-red-500", unknown: "bg-zinc-600" };
 
-export default function ConnectionCard({ conn, onChanged }) {
+export default function ConnectionCard({ conn, onChanged, onBridged }) {
   const [busy, setBusy] = useState(false);
   const k = kindOf(conn.kind);
   const Icon = k.icon;
 
   const bridge = async () => {
     setBusy(true);
-    saveBridgeConfig({ url: conn.url, ...getConnSecrets(conn.id) });
+    const prev = getBridgeConfig();
+    const secrets = getConnSecrets(conn.id);
+    // Sockets without their own vaulted keys reuse the current live credentials
+    saveBridgeConfig({
+      url: conn.url,
+      token: secrets.token || prev.token,
+      cfId: secrets.cfId || prev.cfId,
+      cfSecret: secrets.cfSecret || prev.cfSecret,
+    });
     let status = "ok", detail = "Bridged and health check passed";
     try {
       const health = await bridgeFetch("/health");
@@ -22,6 +30,7 @@ export default function ConnectionCard({ conn, onChanged }) {
     } catch (e) {
       status = "fail";
       detail = e.message;
+      saveBridgeConfig(prev); // don't clobber a working connection with a dead one
     }
     await Promise.all([
       base44.entities.BridgeConnection.update(conn.id, {
@@ -33,6 +42,7 @@ export default function ConnectionCard({ conn, onChanged }) {
     ]);
     setBusy(false);
     onChanged();
+    if (status === "ok") onBridged?.();
   };
 
   const togglePin = async () => {

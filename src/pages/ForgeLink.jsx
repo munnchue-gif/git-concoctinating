@@ -63,7 +63,7 @@ export default function ForgeLink() {
             <TabsTrigger value="concoct">Concoct</TabsTrigger>
             <TabsTrigger value="tasks">Tasks</TabsTrigger>
           </TabsList>
-          <TabsContent value="sockets"><SocketDock /></TabsContent>
+          <TabsContent value="sockets"><SocketDock onBridged={() => setConnKey((k) => k + 1)} /></TabsContent>
           <TabsContent value="feed"><LiveFeed /></TabsContent>
           <TabsContent value="health"><HealthPanel /></TabsContent>
           <TabsContent value="wraps"><WrapsPanel /></TabsContent>
